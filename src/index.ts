@@ -63,6 +63,12 @@ export const dirTree: DirTree = async (
       if (isExcluded) {
         continue;
       }
+
+      const isMatchExtension = extensions.test(item.name);
+      if (!isMatchExtension) {
+        continue;
+      }
+
       result.children.push(item);
     }
 
