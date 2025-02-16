@@ -6,7 +6,6 @@ export const normalizeOptions = (options: DirTreeOptions = {}) => {
     exclude: [],
     extensions: /.*$/,
     attributes: [],
-    normalizePath: false,
     depth: Infinity,
   };
 
@@ -33,7 +32,6 @@ export const normalizeOptions = (options: DirTreeOptions = {}) => {
     exclude,
     extensions: options.extensions || DEFAULT_OPTIONS.extensions,
     attributes: options.attributes || DEFAULT_OPTIONS.attributes,
-    normalizePath: options.normalizePath || DEFAULT_OPTIONS.normalizePath,
     depth: options.depth || DEFAULT_OPTIONS.depth,
   };
 };

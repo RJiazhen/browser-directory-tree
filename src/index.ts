@@ -10,8 +10,7 @@ export const dirTree: DirTree = async (
   const normalizedOptions = normalizeOptions(options);
 
   // TODO the feature of all options is not implemented yet
-  const { exclude, extensions, attributes, normalizePath, depth } =
-    normalizedOptions;
+  const { exclude, extensions, attributes, depth } = normalizedOptions;
 
   /**
    * the result of the directory tree

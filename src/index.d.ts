@@ -36,11 +36,6 @@ interface DirTreeOptions {
    */
   attributes?: (keyof File)[];
   /**
-   * If true, windows style paths are used on all systems. Default is false.
-   * @default false
-   */
-  normalizePath?: boolean;
-  /**
    * If presented, reads so many nested levels of directories. Default is infinite.
    * @default Infinity
    */
