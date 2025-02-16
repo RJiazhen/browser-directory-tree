@@ -21,6 +21,10 @@ export const dirTree: DirTree = async (
     children: [],
   };
 
+  if (depth === 0) {
+    return result;
+  }
+
   /**
    * read file and return the file item
    */
@@ -82,7 +86,10 @@ export const dirTree: DirTree = async (
 
       const item = await dirTree(
         directory,
-        options,
+        {
+          ...options,
+          depth: depth - 1,
+        },
         fileCallback,
         directoryCallback,
       );
