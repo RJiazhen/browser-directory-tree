@@ -28,10 +28,18 @@ export const normalizeOptions = (options: DirTreeOptions = {}) => {
     return DEFAULT_OPTIONS.exclude;
   })();
 
+  const depth = (() => {
+    if (typeof options.depth === 'number' && options.depth >= 0) {
+      return options.depth;
+    }
+
+    return DEFAULT_OPTIONS.depth;
+  })();
+
   return {
     exclude,
     extensions: options.extensions || DEFAULT_OPTIONS.extensions,
     attributes: options.attributes || DEFAULT_OPTIONS.attributes,
-    depth: options.depth || DEFAULT_OPTIONS.depth,
+    depth,
   };
 };

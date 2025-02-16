@@ -4,11 +4,10 @@ import { normalizeOptions } from '../../../src/utils/normalizeOptions';
 describe('normalizeOptions', () => {
   it('should return default options when no options are provided', () => {
     const result = normalizeOptions();
-    expect(result).toEqual({
+    expect(result).toEqual<DirTreeOptions>({
       exclude: [],
       extensions: /.*$/,
       attributes: [],
-      normalizePath: false,
       depth: Infinity,
     });
   });
@@ -53,19 +52,19 @@ describe('normalizeOptions', () => {
     expect(result.attributes).toEqual([]);
   });
 
-  it('should return provided normalizePath when provided', () => {
-    const result = normalizeOptions({ normalizePath: true });
-    expect(result.normalizePath).toBe(true);
-  });
-
-  it('should return default normalizePath when no normalizePath is provided', () => {
-    const result = normalizeOptions();
-    expect(result.normalizePath).toBe(false);
-  });
-
   it('should return provided depth when provided', () => {
     const result = normalizeOptions({ depth: 5 });
     expect(result.depth).toBe(5);
+  });
+
+  it('should return default depth when depth is negative', () => {
+    const result = normalizeOptions({ depth: -5 });
+    expect(result.depth).toBe(Infinity);
+  });
+
+  it('should return provided depth when depth is zero', () => {
+    const result = normalizeOptions({ depth: 0 });
+    expect(result.depth).toBe(0);
   });
 
   it('should return default depth when no depth is provided', () => {
