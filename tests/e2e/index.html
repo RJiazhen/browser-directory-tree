@@ -48,12 +48,12 @@
       event.preventDefault();
       const items = event.dataTransfer.items;
       for (const item of items) {
-        console.log(item);
         if (item.kind === 'file') {
           const entry = item.webkitGetAsEntry();
           if (entry.isDirectory) {
             const result = await dirTree(entry, {
-              exclude: [/.html/],
+              // exclude: [/.html/],
+              extensions: /\.(js|ts|jsx|tsx)$/i,
             });
             console.log(result);
           }
