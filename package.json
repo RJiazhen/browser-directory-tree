@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "build": "rolldown -c rolldown.config.ts"
+    "build": "rolldown -c rolldown.config.ts",
+    "build:watch": "rolldown -c rolldown.config.ts -w"
   },
   "repository": {
     "type": "git",
