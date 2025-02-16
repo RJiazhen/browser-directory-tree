@@ -4,7 +4,7 @@
   "description": "Generate directory tree in the browser",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "vitest",
     "build": "rolldown -c rolldown.config.ts",
     "build:watch": "rolldown -c rolldown.config.ts -w"
   },
