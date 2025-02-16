@@ -1,9 +1,18 @@
+import { checkExclude } from './utils/checkExclude';
+import { normalizeOptions } from './utils/normalizeOptions';
+
 export const dirTree: DirTree = async (
   entry,
   options,
   fileCallback,
   directoryCallback,
 ) => {
+  const normalizedOptions = normalizeOptions(options);
+
+  // TODO the feature of all options is not implemented yet
+  const { exclude, extensions, attributes, normalizePath, depth } =
+    normalizedOptions;
+
   /**
    * the result of the directory tree
    */
@@ -49,11 +58,23 @@ export const dirTree: DirTree = async (
       const fileEntry = entry as FileSystemFileEntry;
 
       const item = await readFile(fileEntry);
+
+      const isExcluded = checkExclude(item.path, exclude);
+      if (isExcluded) {
+        continue;
+      }
       result.children.push(item);
     }
+
     // if the entry is a directory, read the directory recursively
     else if (entry.isDirectory) {
       const directory = entry as FileSystemDirectoryEntry;
+
+      const isExcluded = checkExclude(directory.fullPath, exclude);
+      if (isExcluded) {
+        continue;
+      }
+
       const item = await dirTree(
         directory,
         options,
