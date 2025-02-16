@@ -54,6 +54,7 @@
             const result = await dirTree(entry, {
               // exclude: [/.html/],
               extensions: /\.(js|ts|jsx|tsx)$/i,
+              depth: 1,
             });
             console.log(result);
           }
