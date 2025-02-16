@@ -1,5 +1,7 @@
 import { checkExclude } from './utils/checkExclude';
 import { normalizeOptions } from './utils/normalizeOptions';
+import { readFile } from './utils/readFile';
+import { readEntriesAsync } from './utils/readEntriesAsync';
 
 export const dirTree: DirTree = async (
   entry,
@@ -24,30 +26,6 @@ export const dirTree: DirTree = async (
   if (depth === 0) {
     return result;
   }
-
-  /**
-   * read file and return the file item
-   */
-  const readFile = (fileEntry: FileSystemFileEntry) =>
-    new Promise<DirTreeFileItem>((resolve, reject) => {
-      fileEntry.file((file) => {
-        const item: DirTreeFileItem = {
-          name: file.name,
-          path: fileEntry.fullPath + '/' + file.name,
-        };
-        resolve(item);
-      });
-    });
-
-  /**
-   * read and return entries of the directory
-   */
-  const readEntriesAsync = (reader: FileSystemDirectoryReader) =>
-    new Promise<FileSystemEntry[]>((resolve, reject) => {
-      reader.readEntries((entries) => {
-        resolve(entries);
-      });
-    });
 
   const reader = entry.createReader();
 
