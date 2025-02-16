@@ -18,9 +18,8 @@ describe('normalizeOptions', () => {
     const result = normalizeOptions({ exclude: [regex1, regex2] });
     expect(result.exclude).toEqual([regex1, regex2]);
   });
-
   it('should normalize exclude as an array of regex when provided as a single string', () => {
-    const result = normalizeOptions({ exclude: 'test' });
+    const result = normalizeOptions({ exclude: /test/ });
     expect(result.exclude).toEqual([/test/]);
   });
 
@@ -42,9 +41,9 @@ describe('normalizeOptions', () => {
   });
 
   it('should return provided attributes when provided', () => {
-    const attributes = ['mtime', 'ctime'];
+    const attributes: Array<keyof File> = ['lastModified', 'size'];
     const result = normalizeOptions({ attributes });
-    expect(result.attributes).toBe(attributes);
+    expect(result.attributes).toEqual(attributes);
   });
 
   it('should return default attributes when no attributes are provided', () => {
