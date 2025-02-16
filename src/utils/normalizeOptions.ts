@@ -8,7 +8,7 @@ export const normalizeOptions = (options: DirTreeOptions = {}) => {
     attributes: [],
     normalizePath: false,
     depth: Infinity,
-  } as const;
+  };
 
   const exclude = (() => {
     if (Array.isArray(options.exclude)) {
