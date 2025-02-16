@@ -52,7 +52,9 @@
         if (item.kind === 'file') {
           const entry = item.webkitGetAsEntry();
           if (entry.isDirectory) {
-            const result = await dirTree(entry);
+            const result = await dirTree(entry, {
+              exclude: [/.html/],
+            });
             console.log(result);
           }
         }
