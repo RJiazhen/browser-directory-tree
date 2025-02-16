@@ -11,7 +11,6 @@ export const dirTree: DirTree = async (
 ) => {
   const normalizedOptions = normalizeOptions(options);
 
-  // TODO the feature of all options is not implemented yet
   const { exclude, extensions, attributes, depth } = normalizedOptions;
 
   /**
@@ -38,7 +37,7 @@ export const dirTree: DirTree = async (
     if (entry.isFile) {
       const fileEntry = entry as FileSystemFileEntry;
 
-      const item = await readFile(fileEntry);
+      const item = await readFile(fileEntry, attributes);
 
       const isExcluded = checkExclude(item.path, exclude);
       if (isExcluded) {

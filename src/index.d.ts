@@ -19,6 +19,13 @@ interface DirTree {
   ): Promise<DirTreeDirectoryItem>;
 }
 
+type FileAttributes =
+  | 'lastModified'
+  | 'lastModifiedDate'
+  | 'size'
+  | 'type'
+  | 'webkitRelativePath';
+
 interface DirTreeOptions {
   /**
    * A RegExp or an array of RegExp to test for exclusion. When match, the file is excluded.
@@ -30,11 +37,11 @@ interface DirTreeOptions {
    * @default undefined
    */
   extensions?: RegExp;
-  // TODO change to browser's file attributes
   /**
-   * An array of file attributes that return in the file object. By default, all attributes are returned.
+   * An array of file attributes that return in the file object.
+   * @default []
    */
-  attributes?: (keyof File)[];
+  attributes?: FileAttributes[];
   /**
    * If presented, reads so many nested levels of directories. Default is infinite.
    * @default Infinity
