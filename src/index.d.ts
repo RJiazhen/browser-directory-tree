@@ -16,7 +16,7 @@ interface DirTree {
      * Callbacks for each directory.
      */
     directoryCallback?: DirTreeDirectoryCallback,
-  ): DirTreeItem<'directory'>;
+  ): Promise<DirTreeDirectoryItem>;
 }
 
 interface DirTreeOptions {
@@ -48,23 +48,25 @@ interface DirTreeOptions {
 }
 
 type DirTreeFileCallback = (
-  item: DirTreeItem<'file'>,
+  item: DirTreeFileItem,
   path: string,
   stats: File,
 ) => void;
 
 type DirTreeDirectoryCallback = (
-  item: DirTreeItem<'directory'>,
+  item: DirTreeDirectoryItem,
   path: string,
   stats: Pick<FileSystemDirectoryEntry, 'name' | 'fullPath'>,
 ) => void;
 
-interface DirTreeItem<T extends 'file' | 'directory'> {
+interface DirTreeDirectoryItem {
   name: string;
   path: string;
-  type: T;
-  stats: T extends 'file'
-    ? File
-    : Pick<FileSystemDirectoryEntry, 'name' | 'fullPath'>;
-  children: T extends 'directory' ? DirTreeItem<'file' | 'directory'>[] : never;
+  children: (DirTreeDirectoryItem | DirTreeFileItem)[];
+  // TODO dynamic attributes
+}
+
+interface DirTreeFileItem {
+  name: string;
+  path: string;
 }
