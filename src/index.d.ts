@@ -24,12 +24,12 @@ interface DirTreeOptions {
    * A RegExp or an array of RegExp to test for exclusion. When match, the file is excluded.
    * @default undefined
    */
-  exclude?: RegExp | RegExp[] | string | string[];
+  exclude?: RegExp | RegExp[];
   /**
    * A RegExp or an array of RegExp to test for inclusion. When match, the file is included.
    * @default undefined
    */
-  extensions?: RegExp | RegExp[] | string | string[];
+  extensions?: RegExp;
   // TODO change to browser's file attributes
   /**
    * An array of file attributes that return in the file object. By default, all attributes are returned.
@@ -44,7 +44,7 @@ interface DirTreeOptions {
    * If presented, reads so many nested levels of directories. Default is infinite.
    * @default Infinity
    */
-  depth: number;
+  depth?: number;
 }
 
 type DirTreeFileCallback = (
