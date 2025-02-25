@@ -24,7 +24,9 @@ type FileAttributes =
   | 'lastModifiedDate'
   | 'size'
   | 'type'
-  | 'webkitRelativePath';
+  | 'webkitRelativePath'
+  | 'isFile'
+  | 'isDirectory';
 
 interface DirTreeOptions {
   /**
@@ -65,7 +67,6 @@ interface DirTreeDirectoryItem {
   name: string;
   path: string;
   children: (DirTreeDirectoryItem | DirTreeFileItem)[];
-  // TODO dynamic attributes
 }
 
 interface DirTreeFileItem {

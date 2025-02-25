@@ -19,6 +19,8 @@ export const dirTree: DirTree = async (
   const result: DirTreeDirectoryItem = {
     name: entry.name,
     path: entry.fullPath,
+    ...(attributes.includes('isFile') && { isFile: false }),
+    ...(attributes.includes('isDirectory') && { isDirectory: true }),
     children: [],
   };
 

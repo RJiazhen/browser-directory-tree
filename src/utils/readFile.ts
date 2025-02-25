@@ -5,7 +5,7 @@ export const readFile = (
   fileEntry: FileSystemFileEntry,
   attributes: FileAttributes[],
 ) =>
-  new Promise<DirTreeFileItem>((resolve, reject) => {
+  new Promise<DirTreeFileItem>((resolve) => {
     fileEntry.file((file) => {
       const attributesEntries = attributes
         .map((attribute) => [attribute, file[attribute]])
@@ -16,6 +16,8 @@ export const readFile = (
       const item: DirTreeFileItem = {
         name: file.name,
         path: fileEntry.fullPath + '/' + file.name,
+        ...(attributes.includes('isFile') && { isFile: true }),
+        ...(attributes.includes('isDirectory') && { isDirectory: false }),
         ...attributesObj,
       };
       resolve(item);
