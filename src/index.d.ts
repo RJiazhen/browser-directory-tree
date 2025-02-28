@@ -73,3 +73,7 @@ interface DirTreeFileItem {
   name: string;
   path: string;
 }
+
+declare module 'browser-directory-tree' {
+  export const dirTree: DirTree;
+}
