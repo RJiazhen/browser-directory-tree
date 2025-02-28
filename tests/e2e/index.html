@@ -51,18 +51,29 @@
         if (item.kind === 'file') {
           const entry = item.webkitGetAsEntry();
           if (entry.isDirectory) {
-            const result = await dirTree(entry, {
-              // exclude: [/.html/],
-              extensions: /\.(js|ts|jsx|tsx)$/i,
-              // depth: 1,
-              attributes: [
-                'size',
-                'lastModified',
-                'lastModifiedDate',
-                'type',
-                'webkitRelativePath',
-              ],
-            });
+            const result = await dirTree(
+              entry,
+              {
+                // exclude: [/.html/],
+                extensions: /\.(js|ts|jsx|tsx)$/i,
+                // depth: 1,
+                attributes: [
+                  'size',
+                  'lastModified',
+                  'lastModifiedDate',
+                  'type',
+                  'webkitRelativePath',
+                ],
+              },
+              (item, path, entry) => {
+                console.log('fileCallback');
+                console.log(item, path, entry);
+              },
+              (item, path, entry) => {
+                console.log('directoryCallback');
+                console.log(item, path, entry);
+              },
+            );
             console.log(result);
           }
         }
