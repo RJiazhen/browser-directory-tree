@@ -74,6 +74,7 @@ export const dirTree: DirTree = async (
         directoryCallback,
       );
       result.children.push(item);
+      directoryCallback?.(item, item.path, directory);
     }
   }
 
