@@ -39,19 +39,20 @@ export const dirTree: DirTree = async (
     if (entry.isFile) {
       const fileEntry = entry as FileSystemFileEntry;
 
-      const item = await readFile(fileEntry, attributes);
+      const fileItem = await readFile(fileEntry, attributes);
 
-      const isExcluded = checkExclude(item.path, exclude);
+      const isExcluded = checkExclude(fileItem.path, exclude);
       if (isExcluded) {
         continue;
       }
 
-      const isMatchExtension = extensions.test(item.name);
+      const isMatchExtension = extensions.test(fileItem.name);
       if (!isMatchExtension) {
         continue;
       }
 
-      result.children.push(item);
+      result.children.push(fileItem);
+      fileCallback?.(fileItem, fileItem.path, fileEntry);
     }
 
     // if the entry is a directory, read the directory recursively

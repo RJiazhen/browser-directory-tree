@@ -11,11 +11,11 @@ interface DirTree {
     /**
      * Callbacks for each file.
      */
-    fileCallback?: DirTreeFileCallback,
+    fileCallback?: PartialParameters<DirTreeFileCallback>,
     /**
      * Callbacks for each directory.
      */
-    directoryCallback?: DirTreeDirectoryCallback,
+    directoryCallback?: PartialParameters<DirTreeDirectoryCallback>,
   ): Promise<DirTreeDirectoryItem>;
 }
 
@@ -54,13 +54,13 @@ interface DirTreeOptions {
 type DirTreeFileCallback = (
   item: DirTreeFileItem,
   path: string,
-  stats: File,
+  entry: FileSystemFileEntry,
 ) => void;
 
 type DirTreeDirectoryCallback = (
   item: DirTreeDirectoryItem,
   path: string,
-  stats: Pick<FileSystemDirectoryEntry, 'name' | 'fullPath'>,
+  entry: FileSystemDirectoryEntry,
 ) => void;
 
 interface DirTreeDirectoryItem {
