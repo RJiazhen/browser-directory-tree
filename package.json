@@ -2,7 +2,13 @@
   "name": "browser-directory-tree",
   "version": "0.1.0",
   "description": "Generate directory tree in the browser",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "src/index.d.ts",
+  "unpkg": "dist/global.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "test": "vitest",
     "build": "rolldown -c rolldown.config.ts",
