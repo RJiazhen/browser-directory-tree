@@ -1,0 +1,83 @@
+<!-- TODO 后续再优化为使用vitest进行e2e测试 -->
+<!-- 使用npm run build启动编译后，使用live server插件启动该文件 -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body style="min-width: 100vw; min-height: 100vh; background-color: #ccc">
+    <div
+      id="app"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        color: #333;
+      "
+    >
+      <div
+        id="dragZone"
+        style="
+          width: 300px;
+          height: 300px;
+          border: 2px dashed #333;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
+      >
+        Drag directory here
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    import { dirTree } from '../../dist/index.js';
+    const dragZone = document.getElementById('dragZone');
+
+    dragZone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+
+    dragZone.addEventListener('drop', async (event) => {
+      event.preventDefault();
+      const items = event.dataTransfer.items;
+      for (const item of items) {
+        if (item.kind === 'file') {
+          const entry = item.webkitGetAsEntry();
+          if (entry.isDirectory) {
+            const result = await dirTree(
+              entry,
+              {
+                // exclude: [/.html/],
+                extensions: /\.(js|ts|jsx|tsx)$/i,
+                // depth: 1,
+                attributes: [
+                  'size',
+                  'lastModified',
+                  'lastModifiedDate',
+                  'type',
+                  'webkitRelativePath',
+                ],
+              },
+              (item, path, entry) => {
+                console.log('fileCallback');
+                console.log(item, path, entry);
+              },
+              (item, path, entry) => {
+                console.log('directoryCallback');
+                console.log(item, path, entry);
+              },
+            );
+            console.log(result);
+          }
+        }
+      }
+    });
+  </script>
+</html>

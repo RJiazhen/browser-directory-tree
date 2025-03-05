@@ -1,0 +1,38 @@
+{
+  "name": "browser-directory-tree",
+  "version": "0.1.0",
+  "description": "Generate directory tree in the browser",
+  "main": "dist/index.js",
+  "types": "src/index.d.ts",
+  "unpkg": "dist/global.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "rolldown -c rolldown.config.ts",
+    "build:watch": "rolldown -c rolldown.config.ts -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RJiazhen/browser-directory-tree.git"
+  },
+  "keywords": [
+    "directory",
+    "tree",
+    "browser"
+  ],
+  "author": "Ruan Jiazhen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RJiazhen/browser-directory-tree/issues"
+  },
+  "homepage": "https://github.com/RJiazhen/browser-directory-tree#readme",
+  "engines": {
+    "node": "22.12.0"
+  },
+  "devDependencies": {
+    "rolldown": "1.0.0-beta.1"
+  }
+}
