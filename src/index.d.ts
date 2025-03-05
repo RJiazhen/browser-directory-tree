@@ -35,7 +35,7 @@ interface DirTreeOptions {
    */
   exclude?: RegExp | RegExp[];
   /**
-   * A RegExp or an array of RegExp to test for inclusion. When match, the file is included.
+   * A RegExp to test for inclusion. When match, the file is included.
    * @default undefined
    */
   extensions?: RegExp;
