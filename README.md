@@ -1,8 +1,8 @@
 # browser-directory-tree
 
-[中文文档](https://github.com/RJiazhen/browser-directory-tree/docs/README.zh-CN.md)
+[中文文档](https://github.com/RJiazhen/browser-directory-tree/blob/main/docs/README.zh-CN.md)
 
-Note: Translate from [中文文档](https://github.com/RJiazhen/browser-directory-tree/docs/README.zh-CN.md) by AI, if you find any mistakes, please help me correct them.
+Note: Translate from [中文文档](https://github.com/RJiazhen/browser-directory-tree/blob/main/docs/README.zh-CN.md) by AI, if you find any mistakes, please help me correct them.
 
 Creates a directory tree object by browser.
 
