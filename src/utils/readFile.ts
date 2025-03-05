@@ -15,7 +15,7 @@ export const readFile = (
 
       const item: DirTreeFileItem = {
         name: file.name,
-        path: fileEntry.fullPath + '/' + file.name,
+        path: fileEntry.fullPath,
         ...(attributes.includes('isFile') && { isFile: true }),
         ...(attributes.includes('isDirectory') && { isDirectory: false }),
         ...attributesObj,
